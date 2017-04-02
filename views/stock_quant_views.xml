@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="action_process_classification" model="ir.actions.server">
+            <field name="name">Process Classification</field>
+            <field name="type">ir.actions.server</field>            
+            <field name="model_id" ref="maple.model_stock_location"/>
+            <field name="state">code</field>
+            <field name="code">action = object.process_classification()</field>
+        </record>
+        
+        <record id="action_process_classification_sidecar" model="ir.values">
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'stock.quant'"/>
+            <field name="name">Process Classification</field>
+            <field eval="'ir.actions.server,%d'%action_process_classification" name="value"/>
+        </record>
+
+         <record model="ir.actions.act_window" id="maple_weight_acer_list_action">
+           	<field name="name">Maple Weight Acer List</field>
+           	<field name="res_model">maple.weighing_picking</field>
+           	<field name="view_type">form</field>
+           	<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="maple_weight_acer_tree_view" />
+           	<field name="help" type="html">
+               <p class="oe_view_nocontent_create">No data imported from Acer. </p>
+           	</field>
+       </record>
+
+		<menuitem id="maple_weight_acer_menu_list"
+	    	name="Weighing Exports for Acer"
+	    	parent="maple_preparation_menu"
+	    	sequence="44"
+	        action="maple_weight_acer_list_action"/>
+
+
+
+	</data>
+</openerp>

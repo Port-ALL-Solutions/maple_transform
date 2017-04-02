@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="maple_classification_view">
+            <field name="name">Process Classification</field>
+            <field name="model">maple.transform_order</field>
+                <field name="arch" type="xml">
+                    <form string="Process Classification">
+                    	<sheet>
+                    		<group><h1>Classification</h1></group>
+	                        <footer>
+	                            <button string="Create" name="action_wizard_process_transform" type="object" class="oe_highlight"/>
+	                            or
+	                            <button string="Cancel" class="oe_link" special="cancel"/>
+	                        </footer>                    		
+                        </sheet>
+                    </form>
+                </field>
+        </record>
+
+   		<record id="action_process_classification" model="ir.actions.server">
+            <field name="name">Process Classificationg</field>
+            <field name="type">ir.actions.server</field>            
+            <field name="model_id" ref="stock.model_stock_quant"/>
+            <field name="state">code</field>
+            <field name="code">action = object.action_process_classification_python(cr, uid, context.get('active_ids', []), context=context)</field>
+        </record>
+        
+        <record id="test_more_item" model="ir.values">
+            <field name="key2" eval="'client_action_multi'"/>
+            <field name="model" eval="'stock.quant'"/>
+            <field name="name">Test Item</field>
+            <field eval="'ir.actions.server,%d'%action_process_classification" name="value"/>
+        </record>
+
+
+   </data>
+</openerp>
