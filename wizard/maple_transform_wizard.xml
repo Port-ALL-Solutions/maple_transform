@@ -9,6 +9,9 @@
                     <form string="Process Classification">
                     	<sheet>
                     		<group><h1>Classification</h1></group>
+	                   		<group>
+	                            <field name="location_id"/>
+                    		</group>
 	                        <footer>
 	                            <button string="Create" name="action_wizard_process_transform" type="object" class="oe_highlight"/>
 	                            or
