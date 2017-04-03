@@ -34,30 +34,20 @@ class MapleTransform(models.TransientModel):
         #Ok les boys, on a tous les quants du classement et un ajustement d'inventaire prêt. 
         
         for quant in quants:
-#            product = product_obj.search([('default_code','=',quant.product_code)])
-            maple_product_code = ""            
+            product = product_obj.search([('default_code','=',quant.product_code)])
+            if product:
+                inventory_line = inventory_line_obj.search([('inventory_id','=',inventory.id),('product_id','=',product.id)])
+                if not inventory_line:
+                    inventory_line_vals = {
+                        'inventory_id' : inventory.id,
+                        'product_id' : product.id,
+                        'location_id' : self.location_id.id
+                        }
+                    inventory_line = inventory_line_obj.create(inventory_line_vals)
+                new_qty = inventory_line.product_qty + quant.container_total_weight - quant.container_tar_weight
+                inventory_line.write({'product_qty':new_qty})
 
-            if quant.maple_grade:            
-                maple_product_code += quant.product_id.default_code[1] 
-                maple_product_code += quant.maple_grade
-                if not quant.maple_flavor and not quant.maple_flaw:
-                    maple_product_code += '--'
-                else:
-                    if len(quant.maple_flavor) == 2:
-                        maple_product_code += quant.maple_flavor[1]
-                    elif len(quant.maple_flavor) > 2:
-                        maple_product_code += "R"
-                if quant.maple_flaw:
-                    maple_product_code += quant.maple_flaw
-                else:
-                    maple_product_code += "0"
-                print maple_product_code
-            else:
-                print "pas grade"    
-            
-
-            if len(maple_product_code) == 5:
-                self.product_code = maple_product_code    
+  
         # on fini par post_inventory
-            product = product_obj.search([('default_code','=',quant.product_id.default_code)])
+#            product = product_obj.search([('default_code','=',quant.product_id.default_code)])
         
