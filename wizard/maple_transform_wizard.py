@@ -16,6 +16,8 @@ class MapleTransform(models.TransientModel):
         quant_obj = self.env['stock.quant']
         product_obj = self.env['product.product']
         location_obj = self.env['stock.location']
+        classification_obj = self.env['maple.classification']
+        classification_line_obj = self.env['maple.classification.line']
         
         inventory_obj = self.env['stock.inventory']
         doc_name = 'Classification ' + self.location_id.name + ' ' + date.today().strftime("%d/%m/%y") # une sequence serait bien
@@ -32,8 +34,24 @@ class MapleTransform(models.TransientModel):
         
         quants = quant_obj.search([('location_id','=',self.location_id.id)])               
         #Ok les boys, on a tous les quants du classement et un ajustement d'inventaire prêt. 
+        # on crée un document et on le remplis (avec les quants pour l'instant)
+        
+        classification_vals = {
+                'name' : 'New',  # Put better one there
+                'location_id' : self.location_id.id,
+                'state' : 'draft',
+                }
+        
+        
+        classification = classification_obj.create(classification_vals)
         
         for quant in quants:
+            classification_line_vals = {
+                'classification_id' : classification.id,  # Put better one there
+                'quant_id' : quant.id,
+                }
+            classification_line = classification_line_obj.create(classification_line_vals)
+
             product = product_obj.search([('default_code','=',quant.product_code)])
             if product:
                 inventory_line = inventory_line_obj.search([('inventory_id','=',inventory.id),('product_id','=',product.id)])

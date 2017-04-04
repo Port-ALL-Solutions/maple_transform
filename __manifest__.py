@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Maple TRansform',
+    'name': 'Maple Transform',
     'category': '',
     'version': '1.0',
     'author': "Benoit Vézina & Pierre Dalpé pour Portall",
@@ -15,8 +15,10 @@ This module allow to transform raw maple product from either classification or m
         'maple',
     ],
     'data': [
+        'data/ir_sequence_data.xml',
 #        'views/stock_quant_views.xml',
         'wizard/maple_transform_wizard.xml',
+        'views/maple_classification.xml',
     ],
     'qweb': [
 #        "static/src/xml/*.xml",
