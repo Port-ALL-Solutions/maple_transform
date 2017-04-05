@@ -22,6 +22,36 @@ class MapleClassLine(models.Model):
         index=True, 
         copy=False
         ) 
+
+    acer_seal_no = fields.Char(
+        string="Seal No.",
+        help="Acer Seal Number",
+        related='quant_id.acer_seal_no'
+        )
+
+    maple_seal_no = fields.Char(
+        string="Seal No.",
+        help="Maple Seal Number",
+        related='quant_id.acer_seal_no'        
+        )
+
+    weight = fields.Float('Pounds')
+    
+    product_id = fields.Many2one(
+        comodel_name='product.product', 
+        string='Maple Product',
+        )  
+
+    producer_id = fields.Many2one(
+        comodel_name='res.partner', 
+        string='Producer',
+        related='quant_id.producer' 
+        )      
+    
+    producer_name = fields.Char(
+        string='Producer',
+        related='quant_id.producer.name' 
+        )      
     
     sequence = fields.Integer(string='Sequence', default=10)
 

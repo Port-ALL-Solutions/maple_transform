@@ -50,7 +50,11 @@
 	                                </form>
 	                                <tree string="Classification lines" editable="bottom">
                                     	<field name="sequence" widget="handle"/>
-                                    	<field name="quant_id"/>
+                                    	<field name="quant_id" invisible="1"/>
+                                        <field name="producer_name"/>
+                                        <field name="maple_seal_no"/>
+                                        <field name="product_id"/>
+                                        <field name="weight"/>
                                     </tree>
                             	</field>
                             </page>
@@ -76,6 +80,6 @@
 		
 		<menuitem id="maple_classification_list" 
         	name="Classification" 
-        	parent="maple.maple_preparation_menu"
+        	parent="maple.maple_classif_menu"
             action="action_classifation_list"/> 	
 </odoo>
