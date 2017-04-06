@@ -98,12 +98,12 @@ class MapleTransform(models.TransientModel):
                 picking_vals = {
                     'origin': classification.name,
                     'partner_id': False,
-                    'date_done': self.date_planed,
+                    'date_done': date.today(),
                     'picking_type_id': picking_type.id,
                     'move_type': 'direct',
-                    'note': self.note or "",
-                    'location_id': quant.locations_id,
-                    'location_dest_id': quant.location_dest_id,
+#                    'note': self.note or "",
+                    'location_id': quant.location_id.id,
+                    'location_dest_id': quant.location_dest_id.id,
                 }
                 picking = picking_obj.create(picking_vals)
             
@@ -115,8 +115,8 @@ class MapleTransform(models.TransientModel):
                         'name': classification.name + "-" + quant.product_code,
                         'product_uom_qty' : move_product_qty,
                         'product_uom' : quant.product_id.uom_id.id,
-                        'location_id': quant.locations_id,
-                        'location_dest_id': quant.location_dest_id,
+                        'location_id': quant.location_id.id,
+                        'location_dest_id': quant.location_dest_id.id,
                     }                
                     move = move_obj.create(move_vals)
                 move_product_qty = quant.qty
