@@ -10,9 +10,9 @@ class stockQuant2(models.Model):
 #    maple_product_id = fields.Many2one('product.product', 'Maple Product')
                 
     def action_process_classification_python(self, cr, uid, ids, context=None):
-        # Pre Processing
+        # Pre Processing      
         wizard_obj = self.env['maple.transform_order']           
-        vals = { 'location_id': 42 }                   
+        vals = { 'location_id': self[0].location_id.id }                   
         wizard_id = wizard_obj.create(vals)        
         
         return {

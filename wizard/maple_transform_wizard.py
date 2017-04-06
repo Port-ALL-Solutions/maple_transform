@@ -8,7 +8,7 @@ class MapleTransform(models.TransientModel):
     
     location_id = fields.Many2one(
         'stock.location', 
-        'Classification Location',product.uom_id
+        'Classification Location',
         )
             
     def action_wizard_process_transform(self):
@@ -74,7 +74,7 @@ class MapleTransform(models.TransientModel):
             
             purchase_line_vals = {
                 'product_id':product.id,
-                'product_qty':quant.container_total_weight - quant.container_tar_weight,
+                'product_qty': quant.container_total_weight - quant.container_tar_weight,
                 'order_id':purchase_order.id,
                 'name':purchase_order.name + quant.product_code,
                 'product_uom':product.uom_id.id,
