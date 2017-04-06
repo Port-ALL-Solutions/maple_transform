@@ -19,7 +19,9 @@ class MapleTransform(models.TransientModel):
         classification_line_obj = self.env['maple.classification.line']
         product_obj = self.env['product.product']
         picking_obj = self.env['stock.picking']
-#        picking_type_obj = self.env['stock.picking.type'].browse(self.picking_type_id.id)
+        picking_type_obj = self.env['stock.picking.type']
+        
+        picking_type = picking_type_obj.search([('default_location_src_id','=',self.location_id.id)])        
 
         purchase_obj = self.env['purchase.order']
         purchase_line_obj = self.env['purchase.order.line']
@@ -86,13 +88,48 @@ class MapleTransform(models.TransientModel):
                 
             purchase_order_line = purchase_line_obj.create(purchase_line_vals)
 
+        active_location = None
+        active_product = None        
+            
+        quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id,product_code')          
+        for quant in quants:
+            
+            if quant.location_dest_id != active_location:
+                picking_vals = {
+                    'origin': classification.name,
+                    'partner_id': False,
+                    'date_done': self.date_planed,
+                    'picking_type_id': picking_type.id,
+                    'move_type': 'direct',
+                    'note': self.note or "",
+                    'location_id': quant.locations_id,
+                    'location_dest_id': quant.location_dest_id,
+                }
+                picking = picking_obj.create(picking_vals)
+            
+            if quant.product_id != active_product:
+                if active_product:
+                    move_vals= {
+                        'picking_id': picking.id,
+                        'product_id': quant.product_id.id,
+                        'name': classification.name + "-" + quant.product_code,
+                        'product_uom_qty' : move_product_qty,
+                        'product_uom' : quant.product_id.uom_id.id,
+                        'location_id': quant.locations_id,
+                        'location_dest_id': quant.location_dest_id,
+                    }                
+                    move = move_obj.create(move_vals)
+                move_product_qty = quant.qty
+                active_product = quant.product_id
+            else:
+                move_product_qty += quant.qty
+
+            
+            
+            
+            
             
 #            if product:
-                
-
-                
-                
-                
 #                inventory_line = inventory_line_obj.search([('inventory_id','=',inventory.id),('product_id','=',product.id)])
 #                if not inventory_line:
 #                    inventory_line_vals = {
@@ -103,8 +140,6 @@ class MapleTransform(models.TransientModel):
 #                    inventory_line = inventory_line_obj.create(inventory_line_vals)
 #                new_qty = inventory_line.product_qty + quant.container_total_weight - quant.container_tar_weight
 #                inventory_line.write({'product_qty':new_qty})
-
-  
-        # on fini par post_inventory
+# on fini par post_inventory
 #            product = product_obj.search([('default_code','=',quant.product_id.default_code)])
         
