@@ -88,41 +88,41 @@ class MapleTransform(models.TransientModel):
                 
             purchase_order_line = purchase_line_obj.create(purchase_line_vals)
 
-        active_location = None
-        active_product = None        
-            
-        quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id,product_code')          
-        for quant in quants:
-            
-            if quant.location_dest_id != active_location:
-                picking_vals = {
-                    'origin': classification.name,
-                    'partner_id': False,
-                    'date_done': date.today(),
-                    'picking_type_id': picking_type.id,
-                    'move_type': 'direct',
-#                    'note': self.note or "",
-                    'location_id': quant.location_id.id,
-                    'location_dest_id': quant.location_dest_id.id,
-                }
-                picking = picking_obj.create(picking_vals)
-            
-            if quant.product_id != active_product:
-                if active_product:
-                    move_vals= {
-                        'picking_id': picking.id,
-                        'product_id': quant.product_id.id,
-                        'name': classification.name + "-" + quant.product_code,
-                        'product_uom_qty' : move_product_qty,
-                        'product_uom' : quant.product_id.uom_id.id,
-                        'location_id': quant.location_id.id,
-                        'location_dest_id': quant.location_dest_id.id,
-                    }                
-                    move = move_obj.create(move_vals)
-                move_product_qty = quant.qty
-                active_product = quant.product_id
-            else:
-                move_product_qty += quant.qty
+#         active_location = None
+#         active_product = None        
+#             
+#         quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id,product_code')          
+#         for quant in quants:
+#             
+#             if quant.location_dest_id != active_location:
+#                 picking_vals = {
+#                     'origin': classification.name,
+#                     'partner_id': False,
+#                     'date_done': date.today(),
+#                     'picking_type_id': picking_type.id,
+#                     'move_type': 'direct',
+# #                    'note': self.note or "",
+#                     'location_id': quant.location_id.id,
+#                     'location_dest_id': quant.location_dest_id.id,
+#                 }
+#                 picking = picking_obj.create(picking_vals)
+#             
+#             if quant.product_id != active_product:
+#                 if active_product:
+#                     move_vals= {
+#                         'picking_id': picking.id,
+#                         'product_id': quant.product_id.id,
+#                         'name': classification.name + "-" + quant.product_code,
+#                         'product_uom_qty' : move_product_qty,
+#                         'product_uom' : quant.product_id.uom_id.id,
+#                         'location_id': quant.location_id.id,
+#                         'location_dest_id': quant.location_dest_id.id,
+#                     }                
+#                     move = move_obj.create(move_vals)
+#                 move_product_qty = quant.qty
+#                 active_product = quant.product_id
+#             else:
+#                 move_product_qty += quant.qty
 
             
             
