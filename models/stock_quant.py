@@ -2,10 +2,16 @@
 from openerp import models, fields, api
 from datetime import date
 
-
+class ProductionLot(models.Model):
+    _name = 'stock.production.lot'
+    _inherit = ['stock.production.lot']
+    
+    received_name = fields.Char('Reception Label',help="Reception Label")
+      
 class stockQuant2(models.Model):
     _name = 'stock.quant'
     _inherit = ['stock.quant']
+
     
 #    maple_product_id = fields.Many2one('product.product', 'Maple Product')
                 
