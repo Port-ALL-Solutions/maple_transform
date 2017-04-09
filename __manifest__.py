@@ -19,6 +19,8 @@ This module allow to transform raw maple product from either classification or m
 #        'views/stock_quant_views.xml',
         'wizard/maple_transform_wizard.xml',
         'views/maple_classification.xml',
+        'data/mrp.bom.xml',
+        'data/mrp.bom.line.xml',
     ],
     'qweb': [
 #        "static/src/xml/*.xml",

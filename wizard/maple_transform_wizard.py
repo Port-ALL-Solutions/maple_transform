@@ -84,8 +84,8 @@ class MapleTransform(models.TransientModel):
 
                 }                           
             purchase_order_line = purchase_line_obj.create(purchase_line_vals)
-            quant.lot_id.received_name = quant.lot_id.name
-            quant.lot_id.name = quant.maple_seal_no
+#            quant.lot_id.received_name = quant.lot_id.name
+#            quant.lot_id.name = quant.maple_seal_no
 
         # FIN DE LA PREMIERE BOUCLE
         # Les produits ont été ajouté a des achats
@@ -94,12 +94,14 @@ class MapleTransform(models.TransientModel):
         active_product = None        
         production = None
         
+        prod_list = []
         quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_code')          
         for quant in quants:            
             if quant.product_code != active_product:
                 if production:
                     production.write({
                         'product_qty' : qty_prod_bom })
+                    prod_list.append(production)
                 # on crée tout de suite un prod_order, on modifie la qté plus tard
                 to_produce = self.env['product.product'].search([('default_code','=',quant.product_id.default_code [:1] + quant.product_code)])
                 bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
@@ -108,7 +110,7 @@ class MapleTransform(models.TransientModel):
                     'product_id': to_produce.id,
                     'product_qty' : 1,
                     'product_uom_id' : to_produce.uom_id.id,
-                    'Name' : "Transfo",
+#                    'name' : "Transfo",
                     'location_src_id': quant.location_id.id,
                     'location_dest_id': quant.location_id.id,
                     'bom_id': bom.id
@@ -122,8 +124,11 @@ class MapleTransform(models.TransientModel):
         if production:
             production.write({
                 'product_qty' : qty_prod_bom })
+            prod_list.append(production)
         
-                
+#        for production in prod_list:
+#            production.action_assign
+            
 
 
 
