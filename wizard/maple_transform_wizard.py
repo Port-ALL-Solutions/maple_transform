@@ -28,7 +28,6 @@ class MapleTransform(models.TransientModel):
 
         purchase_obj = self.env['purchase.order']
         purchase_line_obj = self.env['purchase.order.line']
-
         
         # OK on commence par ramasser tout le stock de la localisation, par producteur et par code de produit
         quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='producer,product_code')          
@@ -63,7 +62,7 @@ class MapleTransform(models.TransientModel):
                 #Créer un Purchase Order
                 purchase_vals = {
                     'partner_id':quant.producer.id,
-                    'date_planned':date.today(),
+                    'date_planned': date.today(),
                     'state':'purchase',
                     'location_id':quant.location_id.id,
                     
@@ -93,15 +92,18 @@ class MapleTransform(models.TransientModel):
         
         active_product = None        
         production = None
+        prod_lots = []
         
-        prod_list = []
         quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_code')          
         for quant in quants:            
             if quant.product_code != active_product:
                 if production:
                     production.write({
                         'product_qty' : qty_prod_bom })
-                    prod_list.append(production)
+                    production.action_assign()
+                    prod_lots.append (
+                        {   'prod_id': production.id,
+                            'lots': prod_lots           } )                    
                 # on crée tout de suite un prod_order, on modifie la qté plus tard
                 to_produce = self.env['product.product'].search([('default_code','=',quant.product_id.default_code [:1] + quant.product_code)])
                 bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
@@ -118,17 +120,20 @@ class MapleTransform(models.TransientModel):
                 production = self.env['mrp.production'].create(production_vals)
                 active_product = quant.product_code
                 qty_prod_bom = quant.qty
+                prod_lots = []
+                prod_lots.append(quant.id)
             else :
                 qty_prod_bom += quant.qty
+                prod_lots.append(quant.id)
             
         if production:
             production.write({
                 'product_qty' : qty_prod_bom })
-            prod_list.append(production)
+            prod_lots.append ({   
+                'prod_id': production.id,
+                'lots': prod_lots })                    
         
-#        for production in prod_list:
-#            production.action_assign
-            
+                
 
 
 
