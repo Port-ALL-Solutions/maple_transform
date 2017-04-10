@@ -10,6 +10,45 @@ class MapleTransform(models.TransientModel):
         'stock.location', 
         'Classification Location',
         )
+
+    def complete_produce_product(self, consumed_quants):
+
+        to_produce = self.env['product.product'].search([('default_code','=',consumed_quants[0].product_id.default_code [:1] + consumed_quants[0].product_code)])
+        bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
+                
+        production_vals = {                    
+            'product_id': to_produce.id,
+            'product_qty' : len(consumed_quants),
+            'product_uom_id' : to_produce.uom_id.id,
+#                    'name' : "Transfo",
+            'location_src_id': consumed_quants[0].location_id.id,
+            'location_dest_id': consumed_quants[0].location_id.id,
+            'bom_id': bom.id
+        }
+        production = self.env['mrp.production'].create(production_vals)
+        production.action_assign()
+        
+        move_lots = self.env['stock.move.lots']
+        lots = self.env['stock.production.lot']
+
+        produce_move = production.move_finished_ids.filtered(lambda x: x.product_id == to_produce and x.state not in ('done', 'cancel'))
+        
+        for quant in consumed_quants:
+            lot = lots.create({                 
+                'product_id': produce_move.product_id.id,
+                'name': quant.maple_seal_no })
+            
+            vals = {
+              'move_id': produce_move.id,
+              'product_id': produce_move.product_id.id,
+              'production_id': production.id,
+              'quantity': 1,
+              'quantity_done': 1,
+              'lot_id': lot.id,
+            }
+            move_lots.create(vals)
+        
+
             
     def action_wizard_process_transform(self):
         # POST PROCESSING
@@ -92,46 +131,66 @@ class MapleTransform(models.TransientModel):
         
         active_product = None        
         production = None
-        prod_lots = []
+        consumed = []
         
         quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_code')          
         for quant in quants:            
-            if quant.product_code != active_product:
-                if production:
-                    production.write({
-                        'product_qty' : qty_prod_bom })
-                    production.action_assign()
-                    prod_lots.append (
-                        {   'prod_id': production.id,
-                            'lots': prod_lots           } )                    
-                # on crée tout de suite un prod_order, on modifie la qté plus tard
-                to_produce = self.env['product.product'].search([('default_code','=',quant.product_id.default_code [:1] + quant.product_code)])
-                bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
-                
-                production_vals = {                    
-                    'product_id': to_produce.id,
-                    'product_qty' : 1,
-                    'product_uom_id' : to_produce.uom_id.id,
-#                    'name' : "Transfo",
-                    'location_src_id': quant.location_id.id,
-                    'location_dest_id': quant.location_id.id,
-                    'bom_id': bom.id
-                }
-                production = self.env['mrp.production'].create(production_vals)
+            if quant.product_code == active_product:
+                consumed.append(quant)
+            else:
+                if active_product:
+                    self.complete_produce_product(consumed)    
                 active_product = quant.product_code
-                qty_prod_bom = quant.qty
-                prod_lots = []
-                prod_lots.append(quant.id)
-            else :
-                qty_prod_bom += quant.qty
-                prod_lots.append(quant.id)
-            
-        if production:
-            production.write({
-                'product_qty' : qty_prod_bom })
-            prod_lots.append ({   
-                'prod_id': production.id,
-                'lots': prod_lots })                    
+                consumed = []
+                consumed.append(quant)
+        
+        if consumed :
+            self.complete_produce_product(consumed)    
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+#                 if production:
+#                     self.complete_produce_product(production, prod_lots)
+#                 
+#                 to_produce = self.env['product.product'].search([('default_code','=',quant.product_id.default_code [:1] + quant.product_code)])
+#                 bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
+#                 
+#                 production_vals = {                    
+#                     'product_id': to_produce.id,
+#                     'product_qty' : 1,
+#                     'product_uom_id' : to_produce.uom_id.id,
+# #                    'name' : "Transfo",
+#                     'location_src_id': quant.location_id.id,
+#                     'location_dest_id': quant.location_id.id,
+#                     'bom_id': bom.id
+#                 }
+#                 production = self.env['mrp.production'].create(production_vals)
+#                 active_product = quant.product_code
+# 
+#                 qty_prod_bom = quant.qty
+#                 prod_lots = []
+#                 prod_lots.append(quant.id)
+#             
+#             else :
+#                 qty_prod_bom += quant.qty
+#                 prod_lots.append(quant.id)
+#             
+#         if production:
+#             self.complete_produce_product(production, prod_lots)
         
                 
 
