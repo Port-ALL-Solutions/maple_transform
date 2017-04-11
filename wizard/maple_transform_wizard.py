@@ -48,6 +48,8 @@ class MapleTransform(models.TransientModel):
                 'name': quant.maple_seal_no })
             
             consume_move.create_lots()
+            for consumed_lot in consume_move.active_move_lot_ids:
+                consumed_lot.write({'quantity_done' : 1.})
             
             vals = {
               'move_id': produce_move.id,
@@ -58,7 +60,7 @@ class MapleTransform(models.TransientModel):
               'lot_id': lot.id,
             }
             move_lots.create(vals)
-            
+        production.button_mark_done()    
             
     def action_wizard_process_transform(self):
         # POST PROCESSING
