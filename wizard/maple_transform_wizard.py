@@ -29,16 +29,16 @@ class MapleTransform(models.TransientModel):
         production = self.env['mrp.production'].create(production_vals)
         production.action_assign()
 
-
-        
         move_lots = self.env['stock.move.lots']
         lots = self.env['stock.production.lot']
 
         produce_move = production.move_finished_ids.filtered(lambda x: x.product_id == to_produce and x.state not in ('done', 'cancel'))
         consume_move = production.move_raw_ids.filtered(lambda x: x.state not in ('done', 'cancel'))
+        consume_lots = consume_move.move_lot_ids
 
         consume_move.do_unreserve()
         consume_qty = 0
+
         for quant in consumed_quants:              
 #            quant_tpl = quant_obj.quants_get_preferred_domain(1, consume_move, lot_id=quant.lot_id.id)
             quant.quants_reserve([(quant,1.0)], consume_move)
@@ -46,6 +46,8 @@ class MapleTransform(models.TransientModel):
             lot = lots.create({                 
                 'product_id': produce_move.product_id.id,
                 'name': quant.maple_seal_no })
+            
+            consume_move.create_lots()
             
             vals = {
               'move_id': produce_move.id,
@@ -56,8 +58,7 @@ class MapleTransform(models.TransientModel):
               'lot_id': lot.id,
             }
             move_lots.create(vals)
-        
-
+            
             
     def action_wizard_process_transform(self):
         # POST PROCESSING
