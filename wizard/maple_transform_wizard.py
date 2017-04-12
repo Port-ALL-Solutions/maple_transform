@@ -11,6 +11,46 @@ class MapleTransform(models.TransientModel):
         'Classification Location',
         )
 
+    def create_picking_for_location(self, location_id):
+        quant_obj = self.env['stock.quant']
+        active_location = None
+        active_product = None
+        picking_type = self.env['stock.picking.type'].search([('default_location_src_id','=',location_id)])          
+        # OK on commence par ramasser tout le stock de la localisation, par destination et par code de produit
+        # Faut faire un picking par destination, un move par type de roduit par destination avec la quantité                     
+        quants = quant_obj.search([('location_id','=',location_id)], order='location_dest_id,product_id')
+              
+        for destination in quants.mapped('location_dest_id'):
+            quants_dest =  quants.filtered(lambda r: r.location_dest_id == destination)
+            picking_vals = {
+#                    'origin': classification.name,
+                'partner_id': False,
+                'date_done': date.today(),
+                'picking_type_id': picking_type.id,
+                'move_type': 'direct',
+                'location_id': location_id,
+                'location_dest_id': destination.id,
+            }
+            picking = self.env['stock.picking'].create(picking_vals)
+            for product in quants_dest.mapped('product_id'): 
+                quants_prod = quants_dest.filtered(lambda r: r.product_id == product)            
+    
+                move_vals= {
+                    'picking_id': picking.id,
+                    'product_id': product.id,
+                    'name': picking.name + "-" + product.default_code,
+                    'product_uom_qty' : len(quants_prod),
+                    'product_uom' : product.uom_id.id,
+                    'location_id': location_id,
+                    'location_dest_id': destination.id,
+                }
+                move = self.env['stock.move'].create(move_vals)
+    
+            picking.action_confirm()
+            picking.action_assign()
+            picking.set_pack_operation_lot_assign()
+
+
     def complete_produce_product(self, consumed_quants):
         quant_obj = self.env['stock.quant']
 
@@ -189,7 +229,9 @@ class MapleTransform(models.TransientModel):
                 consumed.append(quant)
         
         if consumed :
-            self.complete_produce_product(consumed)    
+            self.complete_produce_product(consumed)
+#            new_quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id')
+            self.create_picking_for_location(self.location_id.id)    
                 
                 
                 
