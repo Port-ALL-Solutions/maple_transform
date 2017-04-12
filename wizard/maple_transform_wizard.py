@@ -60,7 +60,39 @@ class MapleTransform(models.TransientModel):
               'lot_id': lot.id,
             }
             move_lots.create(vals)
-        production.button_mark_done()    
+            
+        production.button_mark_done()
+        for move in produce_move:
+            for produce_lot in move.active_move_lot_ids:
+                for quant in produce_lot.lot_id.quant_ids:
+                    used_quant = quant_obj.search([('maple_seal_no','=',quant.lot_id.name)])
+                    quant.write(    {   
+                        'consumed_quant_ids':  [(6, 0, [used_quant.id])],
+                        'container_serial' : used_quant.container_serial,
+                        'container_ownership' : used_quant.container_ownership,
+                        'container_state' : used_quant.container_state.id,                 
+                        'container_total_weight' : used_quant.container_total_weight,
+                        'tmp_tare' : used_quant.tmp_tare,
+                        'tmp_material' : used_quant.tmp_material.id,
+                        'tmp_owner' : used_quant.tmp_owner.id,
+                        'maple_net_weight' : used_quant.maple_net_weight,                                        
+                        'controler' : used_quant.controler.id,
+                        'acer_seal_no' : used_quant.acer_seal_no,
+                        'maple_seal_no' : used_quant.maple_seal_no,                 
+                        'maple_light' : used_quant.maple_light,
+                        'maple_grade' : used_quant.maple_grade,
+                        'maple_brix' : used_quant.maple_brix,                 
+                        'maple_flavor' : used_quant.maple_flavor.id,
+                        'maple_flaw' : used_quant.maple_flaw.id,
+                        'maple_adjust_weight' : used_quant.maple_adjust_weight,                 
+                        'maple_adjust_price' : used_quant.maple_adjust_price,                 
+                        'location_dest_id' : used_quant.location_dest_id.id,                 
+                        'maple_producer' : used_quant.maple_producer,
+                        })
+                    used_quant.write(    {   
+                        'produced_quant_ids':  [(6, 0, [quant.id])],
+                    })
+        
             
     def action_wizard_process_transform(self):
         # POST PROCESSING
