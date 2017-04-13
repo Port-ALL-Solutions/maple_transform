@@ -159,8 +159,9 @@ class MapleTransform(models.TransientModel):
                     
                 }
             purchase_order = self.env['purchase.order'].create(purchase_vals)
-            for product in quants_producer.mapped('product_id'):
-                for quant in quants_producer.filtered(lambda r: r.product_id == product):
+            for product_code in quants_producer.mapped('product_code'):
+                product = self.env['product.product'].search([('default_code','=',product_code)])
+                for quant in quants_producer.filtered(lambda r: r.product_code == product_code):
                     purchase_line_vals = {
                         'product_id':product.id,
                         'product_qty': quant.container_total_weight - quant.container_tar_weight,
@@ -173,7 +174,6 @@ class MapleTransform(models.TransientModel):
         
                         }                           
                     purchase_order_line = self.env['purchase.order.line'].create(purchase_line_vals)
-            
 
     def create_classification_from_quants(self, quants):
         for producer in quants.mapped('producer'):
@@ -237,5 +237,7 @@ class MapleTransform(models.TransientModel):
         quants = self.env['stock.quant'].search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_id, product_code')
 #        to_produce_list = quants.mapped(lambda r: r.product_id.default_code[:1] + r.product_code)
         self.complete_produce_product(quants)
+        
+#        quants = self.env['stock.quant'].search([('location_id','=',self.location_id.id)], order='product_id')
         self.create_purchase_from_quants(quants)
         self.create_picking_for_location(self.location_id.id)    
