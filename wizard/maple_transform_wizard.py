@@ -12,16 +12,18 @@ class MapleTransform(models.TransientModel):
         )
 
     def create_picking_for_location(self, location_id):
-        quant_obj = self.env['stock.quant']
-        active_location = None
-        active_product = None
+        # On ramasse le type de picking depuis sa source par défaut
         picking_type = self.env['stock.picking.type'].search([('default_location_src_id','=',location_id)])          
-        # OK on commence par ramasser tout le stock de la localisation, par destination et par code de produit
+
         # Faut faire un picking par destination, un move par type de roduit par destination avec la quantité                     
-        quants = quant_obj.search([('location_id','=',location_id)], order='location_dest_id,product_id')
+        # OK on commence par ramasser tout le stock de la localisation, par destination et par code de produit
+        quants = self.env['stock.quant'].search([('location_id','=',location_id)], order='location_dest_id,product_id')
               
+        # on boucle par destination
         for destination in quants.mapped('location_dest_id'):
+            # on filtre les quants pour la destination
             quants_dest =  quants.filtered(lambda r: r.location_dest_id == destination)
+            # on crée le picking
             picking_vals = {
 #                    'origin': classification.name,
                 'partner_id': False,
@@ -32,9 +34,11 @@ class MapleTransform(models.TransientModel):
                 'location_dest_id': destination.id,
             }
             picking = self.env['stock.picking'].create(picking_vals)
-            for product in quants_dest.mapped('product_id'): 
+            # on boucle ensuite par produit
+            for product in quants_dest.mapped('product_id'):
+                 # on filtre les quants par le produit en plus de destination
                 quants_prod = quants_dest.filtered(lambda r: r.product_id == product)            
-    
+                # on crée le move
                 move_vals= {
                     'picking_id': picking.id,
                     'product_id': product.id,
@@ -45,321 +49,193 @@ class MapleTransform(models.TransientModel):
                     'location_dest_id': destination.id,
                 }
                 move = self.env['stock.move'].create(move_vals)
-    
+
+            # On finalise le tout et laisse le soin a Odoo de faire les Lots (enfin)    
             picking.action_confirm()
             picking.action_assign()
             picking.set_pack_operation_lot_assign()
 
 
-    def complete_produce_product(self, consumed_quants):
-        quant_obj = self.env['stock.quant']
-
-        to_produce = self.env['product.product'].search([('default_code','=',consumed_quants[0].product_id.default_code [:1] + consumed_quants[0].product_code)])
-        bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
+    def complete_produce_product(self, quants):
+        # On regarde qu'est ce qu'on a a produire en calculant le produit résultnant
+        to_produce_list = list(set(quants.mapped(lambda r: r.product_id.default_code[:1] + r.product_code)))
+        # Récupération des produits correspondant 
+        to_produce = self.env['product.product'].search([('default_code','in',to_produce_list)])        
+        
+        # On boucle dans les produits pour produire les documents
+        productions = []
+        for product in to_produce:
+            # Récupération du bill of material correspondans au produit
+            bom = self.env['mrp.bom'].search([('product_id','=',product.default_code)])
                 
-        production_vals = {                    
-            'product_id': to_produce.id,
-            'product_qty' : len(consumed_quants),
-            'product_uom_id' : to_produce.uom_id.id,
-#                    'name' : "Transfo",
-            'location_src_id': consumed_quants[0].location_id.id,
-            'location_dest_id': consumed_quants[0].location_id.id,
-            'bom_id': bom.id
-        }
-        production = self.env['mrp.production'].create(production_vals)
-        production.action_assign()
+            # On filtre les quants
+            quants_per_product = quants.filtered(lambda x: x.product_id.default_code == product.default_code[:2] and x.product_code == product.default_code[1:])
 
-        move_lots = self.env['stock.move.lots']
-        lots = self.env['stock.production.lot']
-
-        produce_move = production.move_finished_ids.filtered(lambda x: x.product_id == to_produce and x.state not in ('done', 'cancel'))
-        consume_move = production.move_raw_ids.filtered(lambda x: x.state not in ('done', 'cancel'))
-        consume_lots = consume_move.move_lot_ids
-
-        consume_move.do_unreserve()
-        consume_qty = 0
-
-        for quant in consumed_quants:              
-#            quant_tpl = quant_obj.quants_get_preferred_domain(1, consume_move, lot_id=quant.lot_id.id)
-            quant.quants_reserve([(quant,1.0)], consume_move)
-            consume_qty += 1
-            lot = lots.create({                 
-                'product_id': produce_move.product_id.id,
-                'name': quant.maple_seal_no })
-            
-            consume_move.create_lots()
-            for consumed_lot in consume_move.active_move_lot_ids:
-                consumed_lot.write({'quantity_done' : 1.})
-            
-            vals = {
-              'move_id': produce_move.id,
-              'product_id': produce_move.product_id.id,
-              'production_id': production.id,
-              'quantity': 1.0,
-              'quantity_done': 1.0,
-              'lot_id': lot.id,
+            production_vals = {                    
+                'product_id': product.id,
+                'product_qty' : len(quants_per_product),
+                'product_uom_id' : product.uom_id.id,
+                'location_src_id': quants[0].location_id.id,
+                'location_dest_id': quants[0].location_id.id,
+                'bom_id': bom.id
             }
-            move_lots.create(vals)
-            
-        production.button_mark_done()
-        for move in produce_move:
-            for produce_lot in move.active_move_lot_ids:
-                for quant in produce_lot.lot_id.quant_ids:
-                    used_quant = quant_obj.search([('maple_seal_no','=',quant.lot_id.name)])
-                    quant.write(    {   
-                        'consumed_quant_ids':  [(6, 0, [used_quant.id])],
-                        'container_serial' : used_quant.container_serial,
-                        'container_ownership' : used_quant.container_ownership,
-                        'container_state' : used_quant.container_state.id,                 
-                        'container_total_weight' : used_quant.container_total_weight,
-                        'tmp_tare' : used_quant.tmp_tare,
-                        'tmp_material' : used_quant.tmp_material.id,
-                        'tmp_owner' : used_quant.tmp_owner.id,
-                        'maple_net_weight' : used_quant.maple_net_weight,                                        
-                        'controler' : used_quant.controler.id,
-                        'acer_seal_no' : used_quant.acer_seal_no,
-                        'maple_seal_no' : used_quant.maple_seal_no,                 
-                        'maple_light' : used_quant.maple_light,
-                        'maple_grade' : used_quant.maple_grade,
-                        'maple_brix' : used_quant.maple_brix,                 
-                        'maple_flavor' : used_quant.maple_flavor.id,
-                        'maple_flaw' : used_quant.maple_flaw.id,
-                        'maple_adjust_weight' : used_quant.maple_adjust_weight,                 
-                        'maple_adjust_price' : used_quant.maple_adjust_price,                 
-                        'location_dest_id' : used_quant.location_dest_id.id,                 
-                        'maple_producer' : used_quant.maple_producer,
-                        })
-                    used_quant.write(    {   
-                        'produced_quant_ids':  [(6, 0, [quant.id])],
-                    })
-        
-            
-    def action_wizard_process_transform(self):
-        # POST PROCESSING
-        # Tous les quants sont dans le même localisation et devrait être valide
-        quant_obj = self.env['stock.quant']
-        location_obj = self.env['stock.location']
-        classification_obj = self.env['maple.classification']
-        classification_line_obj = self.env['maple.classification.line']
-        product_obj = self.env['product.product']
-        picking_obj = self.env['stock.picking']
-        picking_type_obj = self.env['stock.picking.type']
+    
+            production = self.env['mrp.production'].create(production_vals)
+            production.action_assign()
+            productions.append(production)
+            produce_move = production.move_finished_ids.filtered(lambda x: x.product_id == product and x.state not in ('done', 'cancel'))
+            consume_move = production.move_raw_ids.filtered(lambda x: x.state not in ('done', 'cancel'))
+            consume_lots = consume_move.move_lot_ids
 
-        move_obj = self.env['stock.move']
-        
-        picking_type = picking_type_obj.search([('default_location_src_id','=',self.location_id.id)])        
-
-        purchase_obj = self.env['purchase.order']
-        purchase_line_obj = self.env['purchase.order.line']
-        
-        # OK on commence par ramasser tout le stock de la localisation, par producteur et par code de produit
-        quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='producer,product_code')          
-        
-        # on crée un document et on le remplis (avec les quants pour l'instant)                
-        classification_vals = {
-                'name' : 'New',  # Puproduction_lot_obj.t better one there
-                'location_id' : self.location_id.id,
-                'state' : 'draft',
-                }
+            consume_move.do_unreserve()
+            consume_qty = 0
+           
+            for quant in quants_per_product:              
+                quant.quants_reserve([(quant,1.0)], consume_move)
+                consume_qty += 1
+                lot = self.env['stock.production.lot'].create({                 
+                    'product_id': produce_move.product_id.id,
+                    'name': quant.maple_seal_no })
                 
-        classification = classification_obj.create(classification_vals)
-        
-        active_producer = None
-        
-        # on boucle de les quaunts une premiere fois
-        for quant in quants:
-            # On trouve le produit résultant de la classification 
-            product = product_obj.search([('default_code','=',quant.product_code)],limit=1)
-
-            # On produit la ligne de résultat pour le quant
-            classification_line_vals = {
-                'classification_id' : classification.id,  # Put better one there
-                'quant_id' : quant.id,
-                'product_id': product.id,                
-                'weight': quant.container_total_weight - quant.container_tar_weight,
+                consume_move.create_lots()
+                for consumed_lot in consume_move.active_move_lot_ids:
+                    consumed_lot.write({'quantity_done' : 1.})
+                
+                vals = {
+                  'move_id': produce_move.id,
+                  'product_id': produce_move.product_id.id,
+                  'production_id': production.id,
+                  'quantity': 1.0,
+                  'quantity_done': 1.0,
+                  'lot_id': lot.id,
                 }
-            classification_line = classification_line_obj.create(classification_line_vals)
+                self.env['stock.move.lots'].create(vals)
+        
+        for production in productions: 
+            production.button_mark_done()
 
-            # Si c'est un nouveau producteur (ou le premier)            
-            if quant.producer != active_producer:
-                #Créer un Purchase Order
-                purchase_vals = {
+            for move in production.move_finished_ids:
+                for produce_lot in move.active_move_lot_ids:
+                    for quant in produce_lot.lot_id.quant_ids:
+                        used_quant = quants.filtered(lambda x: x.maple_seal_no == quant.lot_id.name)
+#                        used_quant = self.env['stock.quant'].search([('maple_seal_no','=',quant.lot_id.name)])
+                        quant.write(    {   
+                            'consumed_quant_ids':  [(6, 0, [used_quant.id])],
+                            'container_serial' : used_quant.container_serial,
+                            'container_ownership' : used_quant.container_ownership,
+                            'container_state' : used_quant.container_state.id,                 
+                            'container_total_weight' : used_quant.container_total_weight,
+                            'tmp_tare' : used_quant.tmp_tare,
+                            'tmp_material' : used_quant.tmp_material.id,
+                            'tmp_owner' : used_quant.tmp_owner.id,
+                            'maple_net_weight' : used_quant.maple_net_weight,                                        
+                            'controler' : used_quant.controler.id,
+                            'acer_seal_no' : used_quant.acer_seal_no,
+                            'maple_seal_no' : used_quant.maple_seal_no,                 
+                            'maple_light' : used_quant.maple_light,
+                            'maple_grade' : used_quant.maple_grade,
+                            'maple_brix' : used_quant.maple_brix,                 
+                            'maple_flavor' : used_quant.maple_flavor.id,
+                            'maple_flaw' : used_quant.maple_flaw.id,
+                            'maple_adjust_weight' : used_quant.maple_adjust_weight,                 
+                            'maple_adjust_price' : used_quant.maple_adjust_price,                 
+                            'location_dest_id' : used_quant.location_dest_id.id,                 
+                            'maple_producer' : used_quant.maple_producer,
+                            })
+                        used_quant.write(    {   
+                            'produced_quant_ids':  [(6, 0, [quant.id])],
+                        })
+            
+
+    def create_purchase_from_quants(self, quants):
+        for producer in quants.mapped('producer'):
+            quants_producer = quants.filtered(lambda r: r.producer == producer)
+
+            purchase_vals = {
+                    'partner_id':producer.id,
+                    'date_planned': date.today(),
+                    'state':'purchase',
+                    'location_id':self.location_id.id,
+                    
+                }
+            purchase_order = self.env['purchase.order'].create(purchase_vals)
+            for product in quants_producer.mapped('product_id'):
+                for quant in quants_producer.filtered(lambda r: r.product_id == product):
+                    purchase_line_vals = {
+                        'product_id':product.id,
+                        'product_qty': quant.container_total_weight - quant.container_tar_weight,
+                        'order_id': purchase_order.id,
+                        'name': purchase_order.name + quant.product_code,
+                        'product_uom': product.uom_id.id,
+                        'date_planned': date.today(),                
+                        'price_unit': product.price, # champ de prchase_order_line : champs de product_template                
+                        'location_id': quant.location_id.id,
+        
+                        }                           
+                    purchase_order_line = self.env['purchase.order.line'].create(purchase_line_vals)
+            
+
+    def create_classification_from_quants(self, quants):
+        for producer in quants.mapped('producer'):
+            quants_producer = quants.filtered(lambda r: r.producer == producer)
+
+            purchase_vals = {
                     'partner_id':quant.producer.id,
                     'date_planned': date.today(),
                     'state':'purchase',
                     'location_id':quant.location_id.id,
                     
                 }
-                purchase_order = purchase_obj.create(purchase_vals)
-                active_producer = quant.producer
-            
-            # Créer la ligne d'achat pour le quant
-            purchase_line_vals = {
-                'product_id':product.id,
-                'product_qty': quant.container_total_weight - quant.container_tar_weight,
-                'order_id':purchase_order.id,
-                'name':purchase_order.name + quant.product_code,
-                'product_uom':product.uom_id.id,
-                'date_planned':date.today(),                
-                'price_unit':product.price, # champ de prchase_order_line : champs de product_template                
-                'location_id':quant.location_id.id,
+            purchase_order = self.env['purchase.order'].create(purchase_vals)
+    
+            for product in quants_producer.mapped(product_id):
+                for quant in quants_producer.filtered(lambda r: r.product_id == product):
+                    purchase_line_vals = {
+                        'product_id':product.id,
+                        'product_qty': quant.container_total_weight - quant.container_tar_weight,
+                        'order_id': purchase_order.id,
+                        'name': purchase_order.name + quant.product_code,
+                        'product_uom': product.uom_id.id,
+                        'date_planned': date.today(),                
+                        'price_unit': product.price, # champ de prchase_order_line : champs de product_template                
+                        'location_id': quant.location_id.id,
+        
+                        }                           
+                    purchase_order_line = self.env['purchase.order.line'].create(purchase_line_vals)
 
-                }                           
-            purchase_order_line = purchase_line_obj.create(purchase_line_vals)
-#            quant.lot_id.received_name = quant.lot_id.name
-#            quant.lot_id.name = quant.maple_seal_no
-
-        # FIN DE LA PREMIERE BOUCLE
-        # Les produits ont été ajouté a des achats
-        # Faut transformer les barils
-        
-        active_product = None        
-        production = None
-        consumed = []
-        
-        quants = quant_obj.search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_code')          
-        for quant in quants:            
-            if quant.product_code == active_product:
-                consumed.append(quant)
-            else:
-                if active_product:
-                    self.complete_produce_product(consumed)    
-                active_product = quant.product_code
-                consumed = []
-                consumed.append(quant)
-        
-        if consumed :
-            self.complete_produce_product(consumed)
-#            new_quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id')
-            self.create_picking_for_location(self.location_id.id)    
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-#                 if production:
-#                     self.complete_produce_product(production, prod_lots)
-#                 
-#                 to_produce = self.env['product.product'].search([('default_code','=',quant.product_id.default_code [:1] + quant.product_code)])
-#                 bom = self.env['mrp.bom'].search([('product_id','=',to_produce.id)])        
-#                 
-#                 production_vals = {                    
-#                     'product_id': to_produce.id,
-#                     'product_qty' : 1,
-#                     'product_uom_id' : to_produce.uom_id.id,
-# #                    'name' : "Transfo",
-#                     'location_src_id': quant.location_id.id,
-#                     'location_dest_id': quant.location_id.id,
-#                     'bom_id': bom.id
+        # on crée un document et on le remplis (avec les quants pour l'instant)                
+#         classification_vals = {
+#                 'name' : 'New',  # Puproduction_lot_obj.t better one there
+#                 'location_id' : self.location_id.id,
+#                 'state' : 'draft',
 #                 }
-#                 production = self.env['mrp.production'].create(production_vals)
-#                 active_product = quant.product_code
-# 
-#                 qty_prod_bom = quant.qty
-#                 prod_lots = []
-#                 prod_lots.append(quant.id)
-#             
-#             else :
-#                 qty_prod_bom += quant.qty
-#                 prod_lots.append(quant.id)
-#             
-#         if production:
-#             self.complete_produce_product(production, prod_lots)
-        
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-#         active_location = None
-#         active_product = None        
+#                 
+#         classification = self.env['maple.classification'].create(classification_vals)
 #         
+#         active_producer = None
 #         
-#         # achats terminés, passons au pickings
-#         
-#         # OK on commence par ramasser tout le stock de la localisation, par destination et par code de produit             
-#         quants = quant_obj.search([('location_id','=',self.location_id.id)], order='location_dest_id,product_code')          
+#         # on boucle de les quaunts une premiere fois
 #         for quant in quants:
-#              
-#             # Si c'est un nouvelle destination (ou la premiere)
-#             if quant.location_dest_id != active_location:
-#                 #Crée un nouveau picking
-#                 if active_location:
-#                     picking.action_confirm()
-#                     picking.action_assign()
-#                     picking.set_pack_operation_lot_assign()
-#                     
-#                 picking_vals = {
-#                     'origin': classification.name,
-#                     'partner_id': False,
-#                     'date_done': date.today(),
-#                     'picking_type_id': picking_type.id,
-#                     'move_type': 'direct',
-# #                    'note': self.note or "",
-#                     'location_id': quant.location_id.id,
-#                     'location_dest_id': quant.location_dest_id.id,
-#                 }
-#                 picking = picking_obj.create(picking_vals)
-#                 active_location = quant.location_dest_id
-#                 #On remet active_product à None pour être sur des lignes
-#                 active_product = None
-#                 
-#             # Si c'est un noveau produit (ou le premier du picking)                         
-#             if quant.product_id != active_product:
-#                 if not active_product:
-#                     move_vals= {
-#                         'picking_id': picking.id,
-#                         'product_id': quant.product_id.id,
-#                         'name': classification.name + "-" + quant.product_code,
-#                         'product_uom_qty' : quant.qty,
-#                         'product_uom' : quant.product_id.uom_id.id,
-#                         'location_id': quant.location_id.id,
-#                         'location_dest_id': quant.location_dest_id.id,
-#                     }
-#                     lots = []                
-#                     move = move_obj.create(move_vals)
-#                 move_product_qty = quant.qty
-#                 active_product = quant.product_id
-#             else:
-#                 move_product_qty += quant.qty
+#             # On trouve le produit résultant de la classification 
+#             product = self.env['product.product'].search([('default_code','=',quant.product_code)],limit=1)
 # 
-#         #faudrait ajouter un condition
-#         picking.action_confirm()
-#         picking.action_assign()
-#         picking.set_pack_operation_lot_assign()
+#             # On produit la ligne de résultat pour le quant
+#             classification_line_vals = {
+#                 'classification_id' : classification.id,  # Put better one there
+#                 'quant_id' : quant.id,
+#                 'product_id': product.id,                
+#                 'weight': quant.container_total_weight - quant.container_tar_weight,
+#                 }
+#             classification_line = self.env['maple.classification.line'].create(classification_line_vals)
+# 
+
+            
+    def action_wizard_process_transform(self):
+        # POST PROCESSING
+        # Tous les quants sont dans le même localisation et devrait être valide               
+        # OK on commence par ramasser tout le stock de la localisation, ayant un product_code, trier par producteur et par code de produit
+        quants = self.env['stock.quant'].search([('location_id','=',self.location_id.id),('product_code','!=',False)], order='product_id, product_code')
+#        to_produce_list = quants.mapped(lambda r: r.product_id.default_code[:1] + r.product_code)
+        self.complete_produce_product(quants)
+        self.create_purchase_from_quants(quants)
+        self.create_picking_for_location(self.location_id.id)    
