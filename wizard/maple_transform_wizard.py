@@ -174,6 +174,16 @@ class MapleTransform(models.TransientModel):
         
                         }                           
                     purchase_order_line = self.env['purchase.order.line'].create(purchase_line_vals)
+                    
+            for picking in purchase_order.picking_ids:
+                picking.action_confirm()
+                picking.action_assign()
+                for pack in picking.pack_operation_ids:
+                    if pack.product_qty > 0:
+                        pack.write({'qty_done': pack.product_qty})
+                    else:
+                        pack.unlink()   
+                picking.do_transfer()
 
     def create_classification_from_quants(self, quants):
         for producer in quants.mapped('producer'):
