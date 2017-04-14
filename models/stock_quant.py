@@ -2,6 +2,20 @@
 from openerp import models, fields, api
 from datetime import date
 
+class StockPickingLot(models.Model):
+    _inherit = 'stock.picking'
+
+    @api.one
+    def set_pack_operation_lot_assign(self):
+        self.ensure_one()
+        for order in self:
+            for pack_operation in order.pack_operation_product_ids:
+                qty_done = pack_operation.product_qty
+                pack_operation.write({'qty_done': qty_done})
+                for lots in pack_operation.pack_lot_ids:
+                    qty_todo = lots.qty_todo
+                    lots.write({'qty': qty_todo})
+
 class ProductionLot(models.Model):
     _name = 'stock.production.lot'
     _inherit = ['stock.production.lot']
