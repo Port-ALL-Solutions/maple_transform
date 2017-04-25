@@ -1,105 +1,773 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-	<data>
-
-        <record id="bom_BBDO--" model="mrp.bom"><field name="code">BBDO--</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDO--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAM--" model="mrp.bom"><field name="code">BBAM--</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAM--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFO--" model="mrp.bom"><field name="code">BBFO--</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFO--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTF--" model="mrp.bom"><field name="code">BBTF--</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTF--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDO--" model="mrp.bom"><field name="code">BRDO--</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDO--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAM--" model="mrp.bom"><field name="code">BRAM--</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAM--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFO--" model="mrp.bom"><field name="code">BRFO--</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFO--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTF--" model="mrp.bom"><field name="code">BRTF--</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTF--"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOR0" model="mrp.bom"><field name="code">BBDOR0</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMR0" model="mrp.bom"><field name="code">BBAMR0</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOR0" model="mrp.bom"><field name="code">BBFOR0</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFR0" model="mrp.bom"><field name="code">BBTFR0</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOR0" model="mrp.bom"><field name="code">BRDOR0</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMR0" model="mrp.bom"><field name="code">BRAMR0</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOR0" model="mrp.bom"><field name="code">BRFOR0</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFR0" model="mrp.bom"><field name="code">BRTFR0</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFR0"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOR1" model="mrp.bom"><field name="code">BBDOR1</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMR1" model="mrp.bom"><field name="code">BBAMR1</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOR1" model="mrp.bom"><field name="code">BBFOR1</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFR1" model="mrp.bom"><field name="code">BBTFR1</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOR1" model="mrp.bom"><field name="code">BRDOR1</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMR1" model="mrp.bom"><field name="code">BRAMR1</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOR1" model="mrp.bom"><field name="code">BRFOR1</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFR1" model="mrp.bom"><field name="code">BRTFR1</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFR1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOR2" model="mrp.bom"><field name="code">BBDOR2</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMR2" model="mrp.bom"><field name="code">BBAMR2</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOR2" model="mrp.bom"><field name="code">BBFOR2</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFR2" model="mrp.bom"><field name="code">BBTFR2</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOR2" model="mrp.bom"><field name="code">BRDOR2</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMR2" model="mrp.bom"><field name="code">BRAMR2</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOR2" model="mrp.bom"><field name="code">BRFOR2</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFR2" model="mrp.bom"><field name="code">BRTFR2</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFR2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOR4" model="mrp.bom"><field name="code">BBDOR4</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMR4" model="mrp.bom"><field name="code">BBAMR4</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOR4" model="mrp.bom"><field name="code">BBFOR4</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFR4" model="mrp.bom"><field name="code">BBTFR4</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOR4" model="mrp.bom"><field name="code">BRDOR4</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMR4" model="mrp.bom"><field name="code">BRAMR4</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOR4" model="mrp.bom"><field name="code">BRFOR4</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFR4" model="mrp.bom"><field name="code">BRTFR4</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFR4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOR5" model="mrp.bom"><field name="code">BBDOR5</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMR5" model="mrp.bom"><field name="code">BBAMR5</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOR5" model="mrp.bom"><field name="code">BBFOR5</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFR5" model="mrp.bom"><field name="code">BBTFR5</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOR5" model="mrp.bom"><field name="code">BRDOR5</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMR5" model="mrp.bom"><field name="code">BRAMR5</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOR5" model="mrp.bom"><field name="code">BRFOR5</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFR5" model="mrp.bom"><field name="code">BRTFR5</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFR5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC1" model="mrp.bom"><field name="code">BBDOC1</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC1" model="mrp.bom"><field name="code">BBAMC1</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC1" model="mrp.bom"><field name="code">BBFOC1</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC1" model="mrp.bom"><field name="code">BBTFC1</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC1" model="mrp.bom"><field name="code">BRDOC1</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC1" model="mrp.bom"><field name="code">BRAMC1</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC1" model="mrp.bom"><field name="code">BRFOC1</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC1" model="mrp.bom"><field name="code">BRTFC1</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC1"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC2" model="mrp.bom"><field name="code">BBDOC2</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC2" model="mrp.bom"><field name="code">BBAMC2</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC2" model="mrp.bom"><field name="code">BBFOC2</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC2" model="mrp.bom"><field name="code">BBTFC2</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC2" model="mrp.bom"><field name="code">BRDOC2</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC2" model="mrp.bom"><field name="code">BRAMC2</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC2" model="mrp.bom"><field name="code">BRFOC2</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC2" model="mrp.bom"><field name="code">BRTFC2</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC2"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC3" model="mrp.bom"><field name="code">BBDOC3</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC3" model="mrp.bom"><field name="code">BBAMC3</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC3" model="mrp.bom"><field name="code">BBFOC3</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC3" model="mrp.bom"><field name="code">BBTFC3</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC3" model="mrp.bom"><field name="code">BRDOC3</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC3" model="mrp.bom"><field name="code">BRAMC3</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC3" model="mrp.bom"><field name="code">BRFOC3</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC3" model="mrp.bom"><field name="code">BRTFC3</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC3"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC4" model="mrp.bom"><field name="code">BBDOC4</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC4" model="mrp.bom"><field name="code">BBAMC4</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC4" model="mrp.bom"><field name="code">BBFOC4</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC4" model="mrp.bom"><field name="code">BBTFC4</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC4" model="mrp.bom"><field name="code">BRDOC4</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC4" model="mrp.bom"><field name="code">BRAMC4</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC4" model="mrp.bom"><field name="code">BRFOC4</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC4" model="mrp.bom"><field name="code">BRTFC4</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC4"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC5" model="mrp.bom"><field name="code">BBDOC5</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC5" model="mrp.bom"><field name="code">BBAMC5</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC5" model="mrp.bom"><field name="code">BBFOC5</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC5" model="mrp.bom"><field name="code">BBTFC5</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC5" model="mrp.bom"><field name="code">BRDOC5</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC5" model="mrp.bom"><field name="code">BRAMC5</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC5" model="mrp.bom"><field name="code">BRFOC5</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC5" model="mrp.bom"><field name="code">BRTFC5</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC5"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBDOC6" model="mrp.bom"><field name="code">BBDOC6</field><field name="product_tmpl_id" ref="maple.BBDO"/><field name="product_id" ref="maple.BBDOC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBAMC6" model="mrp.bom"><field name="code">BBAMC6</field><field name="product_tmpl_id" ref="maple.BBAM"/><field name="product_id" ref="maple.BBAMC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBFOC6" model="mrp.bom"><field name="code">BBFOC6</field><field name="product_tmpl_id" ref="maple.BBFO"/><field name="product_id" ref="maple.BBFOC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BBTFC6" model="mrp.bom"><field name="code">BBTFC6</field><field name="product_tmpl_id" ref="maple.BBTF"/><field name="product_id" ref="maple.BBTFC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRDOC6" model="mrp.bom"><field name="code">BRDOC6</field><field name="product_tmpl_id" ref="maple.BRDO"/><field name="product_id" ref="maple.BRDOC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRAMC6" model="mrp.bom"><field name="code">BRAMC6</field><field name="product_tmpl_id" ref="maple.BRAM"/><field name="product_id" ref="maple.BRAMC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRFOC6" model="mrp.bom"><field name="code">BRFOC6</field><field name="product_tmpl_id" ref="maple.BRFO"/><field name="product_id" ref="maple.BRFOC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-        <record id="bom_BRTFC6" model="mrp.bom"><field name="code">BRTFC6</field><field name="product_tmpl_id" ref="maple.BRTF"/><field name="product_id" ref="maple.BRTFC6"/><field name="product_qty">1</field><field name="product_uom_id" ref="product.product_uom_categ_unit"/><field name="type">normal</field></record>
-
-
-
-	</data>
+   <data>
+      <record id="bom_BBDO--" model="mrp.bom">
+         <field name="code">BBDO--</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDO--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAM--" model="mrp.bom">
+         <field name="code">BBAM--</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAM--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFO--" model="mrp.bom">
+         <field name="code">BBFO--</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFO--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTF--" model="mrp.bom">
+         <field name="code">BBTF--</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTF--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDO--" model="mrp.bom">
+         <field name="code">BRDO--</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDO--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAM--" model="mrp.bom">
+         <field name="code">BRAM--</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAM--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFO--" model="mrp.bom">
+         <field name="code">BRFO--</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFO--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTF--" model="mrp.bom">
+         <field name="code">BRTF--</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTF--" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOR0" model="mrp.bom">
+         <field name="code">BBDOR0</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMR0" model="mrp.bom">
+         <field name="code">BBAMR0</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOR0" model="mrp.bom">
+         <field name="code">BBFOR0</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFR0" model="mrp.bom">
+         <field name="code">BBTFR0</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOR0" model="mrp.bom">
+         <field name="code">BRDOR0</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMR0" model="mrp.bom">
+         <field name="code">BRAMR0</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOR0" model="mrp.bom">
+         <field name="code">BRFOR0</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFR0" model="mrp.bom">
+         <field name="code">BRTFR0</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFR0" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOR1" model="mrp.bom">
+         <field name="code">BBDOR1</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMR1" model="mrp.bom">
+         <field name="code">BBAMR1</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOR1" model="mrp.bom">
+         <field name="code">BBFOR1</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFR1" model="mrp.bom">
+         <field name="code">BBTFR1</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOR1" model="mrp.bom">
+         <field name="code">BRDOR1</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMR1" model="mrp.bom">
+         <field name="code">BRAMR1</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOR1" model="mrp.bom">
+         <field name="code">BRFOR1</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFR1" model="mrp.bom">
+         <field name="code">BRTFR1</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFR1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOR2" model="mrp.bom">
+         <field name="code">BBDOR2</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMR2" model="mrp.bom">
+         <field name="code">BBAMR2</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOR2" model="mrp.bom">
+         <field name="code">BBFOR2</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFR2" model="mrp.bom">
+         <field name="code">BBTFR2</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOR2" model="mrp.bom">
+         <field name="code">BRDOR2</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMR2" model="mrp.bom">
+         <field name="code">BRAMR2</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOR2" model="mrp.bom">
+         <field name="code">BRFOR2</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFR2" model="mrp.bom">
+         <field name="code">BRTFR2</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFR2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOR4" model="mrp.bom">
+         <field name="code">BBDOR4</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMR4" model="mrp.bom">
+         <field name="code">BBAMR4</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOR4" model="mrp.bom">
+         <field name="code">BBFOR4</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFR4" model="mrp.bom">
+         <field name="code">BBTFR4</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOR4" model="mrp.bom">
+         <field name="code">BRDOR4</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMR4" model="mrp.bom">
+         <field name="code">BRAMR4</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOR4" model="mrp.bom">
+         <field name="code">BRFOR4</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFR4" model="mrp.bom">
+         <field name="code">BRTFR4</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFR4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOR5" model="mrp.bom">
+         <field name="code">BBDOR5</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMR5" model="mrp.bom">
+         <field name="code">BBAMR5</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOR5" model="mrp.bom">
+         <field name="code">BBFOR5</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFR5" model="mrp.bom">
+         <field name="code">BBTFR5</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOR5" model="mrp.bom">
+         <field name="code">BRDOR5</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMR5" model="mrp.bom">
+         <field name="code">BRAMR5</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOR5" model="mrp.bom">
+         <field name="code">BRFOR5</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFR5" model="mrp.bom">
+         <field name="code">BRTFR5</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFR5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC1" model="mrp.bom">
+         <field name="code">BBDOC1</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC1" model="mrp.bom">
+         <field name="code">BBAMC1</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC1" model="mrp.bom">
+         <field name="code">BBFOC1</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC1" model="mrp.bom">
+         <field name="code">BBTFC1</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC1" model="mrp.bom">
+         <field name="code">BRDOC1</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC1" model="mrp.bom">
+         <field name="code">BRAMC1</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC1" model="mrp.bom">
+         <field name="code">BRFOC1</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC1" model="mrp.bom">
+         <field name="code">BRTFC1</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC1" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC2" model="mrp.bom">
+         <field name="code">BBDOC2</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC2" model="mrp.bom">
+         <field name="code">BBAMC2</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC2" model="mrp.bom">
+         <field name="code">BBFOC2</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC2" model="mrp.bom">
+         <field name="code">BBTFC2</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC2" model="mrp.bom">
+         <field name="code">BRDOC2</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC2" model="mrp.bom">
+         <field name="code">BRAMC2</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC2" model="mrp.bom">
+         <field name="code">BRFOC2</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC2" model="mrp.bom">
+         <field name="code">BRTFC2</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC2" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC3" model="mrp.bom">
+         <field name="code">BBDOC3</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC3" model="mrp.bom">
+         <field name="code">BBAMC3</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC3" model="mrp.bom">
+         <field name="code">BBFOC3</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC3" model="mrp.bom">
+         <field name="code">BBTFC3</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC3" model="mrp.bom">
+         <field name="code">BRDOC3</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC3" model="mrp.bom">
+         <field name="code">BRAMC3</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC3" model="mrp.bom">
+         <field name="code">BRFOC3</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC3" model="mrp.bom">
+         <field name="code">BRTFC3</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC3" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC4" model="mrp.bom">
+         <field name="code">BBDOC4</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC4" model="mrp.bom">
+         <field name="code">BBAMC4</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC4" model="mrp.bom">
+         <field name="code">BBFOC4</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC4" model="mrp.bom">
+         <field name="code">BBTFC4</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC4" model="mrp.bom">
+         <field name="code">BRDOC4</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC4" model="mrp.bom">
+         <field name="code">BRAMC4</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC4" model="mrp.bom">
+         <field name="code">BRFOC4</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC4" model="mrp.bom">
+         <field name="code">BRTFC4</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC4" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC5" model="mrp.bom">
+         <field name="code">BBDOC5</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC5" model="mrp.bom">
+         <field name="code">BBAMC5</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC5" model="mrp.bom">
+         <field name="code">BBFOC5</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC5" model="mrp.bom">
+         <field name="code">BBTFC5</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC5" model="mrp.bom">
+         <field name="code">BRDOC5</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC5" model="mrp.bom">
+         <field name="code">BRAMC5</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC5" model="mrp.bom">
+         <field name="code">BRFOC5</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC5" model="mrp.bom">
+         <field name="code">BRTFC5</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC5" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBDOC6" model="mrp.bom">
+         <field name="code">BBDOC6</field>
+         <field name="product_tmpl_id" ref="maple.BBDO" />
+         <field name="product_id" ref="maple.BBDOC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBAMC6" model="mrp.bom">
+         <field name="code">BBAMC6</field>
+         <field name="product_tmpl_id" ref="maple.BBAM" />
+         <field name="product_id" ref="maple.BBAMC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBFOC6" model="mrp.bom">
+         <field name="code">BBFOC6</field>
+         <field name="product_tmpl_id" ref="maple.BBFO" />
+         <field name="product_id" ref="maple.BBFOC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BBTFC6" model="mrp.bom">
+         <field name="code">BBTFC6</field>
+         <field name="product_tmpl_id" ref="maple.BBTF" />
+         <field name="product_id" ref="maple.BBTFC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRDOC6" model="mrp.bom">
+         <field name="code">BRDOC6</field>
+         <field name="product_tmpl_id" ref="maple.BRDO" />
+         <field name="product_id" ref="maple.BRDOC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRAMC6" model="mrp.bom">
+         <field name="code">BRAMC6</field>
+         <field name="product_tmpl_id" ref="maple.BRAM" />
+         <field name="product_id" ref="maple.BRAMC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRFOC6" model="mrp.bom">
+         <field name="code">BRFOC6</field>
+         <field name="product_tmpl_id" ref="maple.BRFO" />
+         <field name="product_id" ref="maple.BRFOC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+      <record id="bom_BRTFC6" model="mrp.bom">
+         <field name="code">BRTFC6</field>
+         <field name="product_tmpl_id" ref="maple.BRTF" />
+         <field name="product_id" ref="maple.BRTFC6" />
+         <field name="product_qty">1</field>
+         <field name="product_uom_id" ref="product.product_uom_categ_unit" />
+         <field name="type">normal</field>
+      </record>
+   </data>
 </odoo>
