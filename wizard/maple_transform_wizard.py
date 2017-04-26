@@ -184,6 +184,20 @@ class MapleTransform(models.TransientModel):
                     else:
                         pack.unlink()   
                 picking.do_transfer()
+                dest_move = picking.move_lines[0].move_dest_id
+                while dest_move:
+                    next_pick = dest_move.picking_id
+                    next_pick.action_confirm()
+                    next_pick.action_assign()
+                    for pack in next_pick.pack_operation_ids:
+                        if pack.product_qty > 0:
+                            pack.write({'qty_done': pack.product_qty})
+                        else:
+                            pack.unlink()   
+                    next_pick.do_transfer()
+                    dest_move = next_pick.move_lines[0].move_dest_id
+                
+            
 
     def create_classification_from_quants(self, quants):
         for producer in quants.mapped('producer'):
@@ -250,4 +264,4 @@ class MapleTransform(models.TransientModel):
         
 #        quants = self.env['stock.quant'].search([('location_id','=',self.location_id.id)], order='product_id')
         self.create_purchase_from_quants(quants)
-#        self.create_picking_for_location(self.location_id.id)
+        self.create_picking_for_location(self.location_id.id)
