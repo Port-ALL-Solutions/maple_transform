@@ -164,7 +164,7 @@ class MapleTransform(models.TransientModel):
                 for quant in quants_producer.filtered(lambda r: r.product_code == product_code):
                     purchase_line_vals = {
                         'product_id':product.id,
-                        'product_qty': quant.container_total_weight - quant.container_tar_weight,
+                        'product_qty': quant.maple_payable_weight,
                         'order_id': purchase_order.id,
                         'name': purchase_order.name + quant.product_code,
                         'product_uom': product.uom_id.id,
@@ -250,4 +250,4 @@ class MapleTransform(models.TransientModel):
         
 #        quants = self.env['stock.quant'].search([('location_id','=',self.location_id.id)], order='product_id')
         self.create_purchase_from_quants(quants)
-        self.create_picking_for_location(self.location_id.id)    
+#        self.create_picking_for_location(self.location_id.id)
