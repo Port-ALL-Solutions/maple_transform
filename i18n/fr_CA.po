@@ -1,0 +1,276 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maple_transform
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 09:04-0400\n"
+"PO-Revision-Date: 2017-04-27 09:16-0400\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: \n"
+"Language: fr_CA\n"
+
+#. module: maple_transform
+#: model:ir.model.fields,help:maple_transform.field_maple_classification_line_acer_seal_no
+msgid "Acer Seal Number"
+msgstr "No scellé Acer"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.maple_classification_view
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: maple_transform
+#: selection:maple.classification,state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: maple_transform
+#: model:ir.ui.menu,name:maple_transform.maple_classification_list
+#: model:ir.ui.view,arch_db:maple_transform.maple_classification_view
+msgid "Classification"
+msgstr "Classement"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_classification_date
+msgid "Classification Date"
+msgstr "Date de classement"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_classification_line
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+msgid "Classification Lines"
+msgstr "Lignes de classement"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_location_id
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_location_id
+msgid "Classification Location"
+msgstr "Emplacement de classement"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_tree
+msgid "Classification Number"
+msgstr "Classement No"
+
+#. module: maple_transform
+#: model:ir.actions.act_window,name:maple_transform.action_classifation_list
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_tree
+msgid "Classification Orders"
+msgstr "Ordres de Classement"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_classification_id
+msgid "Classification Reference"
+msgstr "Référence de Classification"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+msgid "Classification lines"
+msgstr "Lignes de classification"
+
+#. module: maple_transform
+#: selection:maple.classification,state:0
+msgid "Classify"
+msgstr "Classer"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.maple_classification_view
+msgid "Create"
+msgstr "Créer"
+
+#. module: maple_transform
+#: model:ir.actions.act_window,help:maple_transform.action_classifation_list
+msgid "Create a Classification."
+msgstr "Créer un Classement."
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_create_uid
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_create_uid
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_create_date
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_create_date
+msgid "Creation Date"
+msgstr "Date de création"
+
+#. module: maple_transform
+#: model:ir.model.fields,help:maple_transform.field_maple_classification_create_date
+msgid "Date on which classification is created."
+msgstr "Date de création du classement."
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_display_name
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_display_name
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_name
+msgid "Doc Reference"
+msgstr "Document de Référence"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_id
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_id
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_id
+msgid "ID"
+msgstr "ID"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification___last_update
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line___last_update
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_write_uid
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_write_uid
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_write_date
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_write_date
+#: model:ir.model.fields,field_description:maple_transform.field_maple_transform_order_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+msgid "Lock"
+msgstr "Barré"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Étiquette/Scellé"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_product_id
+msgid "Maple Product"
+msgstr "Produit"
+
+#. module: maple_transform
+#: model:ir.model.fields,help:maple_transform.field_maple_classification_line_maple_seal_no
+msgid "Maple Seal Number"
+msgstr "No scellé"
+
+#. module: maple_transform
+#: code:addons/maple_transform/models/maple_classification.py:68
+#, python-format
+msgid "New"
+msgstr "Nouveau"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_note
+msgid "Notes"
+msgstr "Notes"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_weight
+msgid "Pounds"
+msgstr "Livres"
+
+#. module: maple_transform
+#: selection:maple.classification,state:0
+msgid "Preparation"
+msgstr "Préparation"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.maple_classification_view
+msgid "Process Classification"
+msgstr "Terminer le Classement"
+
+#. module: maple_transform
+#: model:ir.actions.server,name:maple_transform.action_process_classification
+msgid "Process Classificationg"
+msgstr "Terminer le Classement"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_producer_id
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_producer_name
+msgid "Producer"
+msgstr "Producteur"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_quant_id
+msgid "Quant"
+msgstr "Article"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_stock_quant
+msgid "Quants"
+msgstr "Articles"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_stock_production_lot_received_name
+#: model:ir.model.fields,help:maple_transform.field_stock_production_lot_received_name
+msgid "Reception Label"
+msgstr "Étiquette de réception"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_acer_seal_no
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_maple_seal_no
+msgid "Seal No."
+msgstr "No scellé"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_line_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.view_classification_form
+msgid "Set to Quotation"
+msgstr "Défini à Quotation"
+
+#. module: maple_transform
+#: model:ir.model.fields,field_description:maple_transform.field_maple_classification_state
+msgid "Status"
+msgstr "Statut"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_stock_picking
+msgid "Transfer"
+msgstr "Transférer"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_maple_classification
+msgid "maple.classification"
+msgstr "maple.classification"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_maple_classification_line
+msgid "maple.classification.line"
+msgstr "maple.classification.line"
+
+#. module: maple_transform
+#: model:ir.model,name:maple_transform.model_maple_transform_order
+msgid "maple.transform_order"
+msgstr "maple.transform_order"
+
+#. module: maple_transform
+#: model:ir.ui.view,arch_db:maple_transform.maple_classification_view
+msgid "or"
+msgstr "ou"
