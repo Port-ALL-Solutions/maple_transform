@@ -184,18 +184,55 @@ class MapleTransform(models.TransientModel):
                     else:
                         pack.unlink()   
                 picking.do_transfer()
-                dest_move = picking.move_lines[0].move_dest_id
-                while dest_move:
-                    next_pick = dest_move.picking_id
-                    next_pick.action_confirm()
-                    next_pick.action_assign()
-                    for pack in next_pick.pack_operation_ids:
-                        if pack.product_qty > 0:
-                            pack.write({'qty_done': pack.product_qty})
-                        else:
-                            pack.unlink()   
-                    next_pick.do_transfer()
-                    dest_move = next_pick.move_lines[0].move_dest_id
+                
+                for orig_move in picking.move_lines:
+                    dest_move = orig_move.move_dest_id
+                    if dest_move:
+                        next_pick = dest_move.picking_id
+                        next_pick.action_confirm()
+                        next_pick.action_assign()
+                        for pack in next_pick.pack_operation_ids:
+                            if pack.product_qty > 0:
+                                pack.write({'qty_done': pack.product_qty})
+                            else:
+                                pack.unlink()   
+                        next_pick.do_transfer()
+                
+                
+                
+                
+#                 dest_move = picking.move_lines[0].move_dest_id
+#                 while dest_move:
+#                     next_pick = dest_move.picking_id
+#                     next_pick.action_confirm()
+#                     next_pick.action_assign()
+#                     for pack in picking.pack_operation_ids:
+#                         dest_pack = next_pick.pack_operation_ids.filtered(lambda x: x.product_id == pack.product_id)
+#                         if dest_pack:
+#                             pack.write({'qty_done': pack.product_qty})
+#                         else:
+#                             pack_ops_vals = {   'picking_id':next_pick.id,
+#                                     'product_id':pack.product_id.id,
+#                                     'date':pack.date,
+#                                     'location_dest_id':next_pick.location_dest_id.id,
+#                                     'location_id':next_pick.location_id.id,
+#                                     'product_qty':pack.product_qty,
+#                                     'ordered_qty':pack.product_qty,
+#                                     'qty_done':pack.product_qty,
+#                                     'product_uom_id':pack.product_uom_id.id,
+#                                 }
+#                 
+#                             self.env['stock.pack.operation'].create(pack_ops_vals)
+                            
+#                        if pack.product_id in next_pick.pack_operation_ids:
+#                    
+#                    for pack in next_pick.pack_operation_ids:
+#                        if pack.product_qty > 0:
+#                            pack.write({'qty_done': pack.product_qty})
+#                        else:
+#                            pack.unlink()   
+#                     next_pick.do_transfer()
+#                     dest_move = next_pick.move_lines[0].move_dest_id
                 
             
 
