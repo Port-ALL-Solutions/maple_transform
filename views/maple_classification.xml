@@ -78,8 +78,8 @@
             </field>
         </record>
 		
-		<menuitem id="maple_classification_list" 
+		<!-- menuitem id="maple_classification_list" 
         	name="Classification" 
         	parent="maple.maple_classif_menu"
-            action="action_classifation_list"/> 	
+            action="action_classifation_list"/ --> 	
 </odoo>
