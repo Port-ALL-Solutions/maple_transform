@@ -141,6 +141,7 @@ class MapleTransform(models.TransientModel):
                             'maple_adjust_price' : used_quant.maple_adjust_price,                 
                             'location_dest_id' : used_quant.location_dest_id.id,                 
                             'maple_producer' : used_quant.maple_producer,
+                            'owner_id' : used_quant.owner_id.id,
                             })
                         used_quant.write(    {   
                             'produced_quant_ids':  [(6, 0, [quant.id])],
